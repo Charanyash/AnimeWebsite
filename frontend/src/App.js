@@ -1,15 +1,23 @@
 import React from 'react';
-import { BrowserRouter} from 'react-router-dom';
-import { Route,Routes,useNavigate} from 'react-router-dom';
+import { BrowserRouter as Router,Route,Routes} from 'react-router-dom';
 import NavBar from './Components/NavBar';
+import Signup from './Components/Signup';
 function App() {
   return (
-    <BrowserRouter>
+    <>
+    <Router>
+      <div>
       <Routes>
-        <Route exact path = "/"  element={ < NavBar />}>
-      </Route>
+        <Route exact path = "/" element = {<NavBar/>} >
+        </Route>
+        <Route exact path = "/Signup" element = {<Signup/>}>
+        </Route>
       </Routes>
-      </BrowserRouter>
+
+      </div>
+      </Router>
+
+    </>
   );
 }
 
