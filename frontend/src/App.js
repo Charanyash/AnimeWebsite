@@ -1,25 +1,25 @@
 import React from 'react';
-
-import { BrowserRouter} from 'react-router-dom';
-import { Route,Routes} from 'react-router-dom';
+import { BrowserRouter as Router,Route,Routes} from 'react-router-dom';
 import NavBar from './Components/NavBar';
-import Login from './Components/login';
-
-//Components should always be first letter capital. Very strange thing!!
-
+import Signup from './Components/Signup';
 function App() {
-     
-
-  return (<>
-
- <BrowserRouter>
+  return (
+    <>
+    <Router>
+      <div>
       <Routes>
-        <Route exact path = "/"  element={ < NavBar />}></Route> 
-      <Route exact path ="/login" element={ < Login /> }></Route>
+        <Route exact path = "/" element = {<NavBar/>} >
+        </Route>
+        <Route exact path = "/Signup" element = {<Signup/>}>
+        </Route>
+        <Route exact path ="/login" element={ < Login /> }></Route>
       </Routes>
-      </BrowserRouter>
-    
-      </>
+
+      </div>
+      </Router>
+
+    </>
+
   );
 }
 
