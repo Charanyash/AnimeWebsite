@@ -9,7 +9,7 @@ function Genre(){
       ))}
       </ul>
         </>
-    )
+    );
 }
 
 export default Genre;
