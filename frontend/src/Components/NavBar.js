@@ -3,6 +3,7 @@ import { NavLink } from "react-router-dom";
 import "./NavBar.css"
 import Cards from './Cards';
 import Genre from './Genre';
+const cardlist = [{title:"Gintama" ,url:"https://img.zorores.com/_r/300x400/100/5a/2f/5a2f7d0736f223f096c459751f6f0bd6/5a2f7d0736f223f096c459751f6f0bd6.jpg",description:"kaizoku ou ni ore wa naru" }]
 
 function NavBar() {
   return (
@@ -45,8 +46,6 @@ function NavBar() {
         {/* <button className="btn btn-outline-success" type="submit">Search</button> */}
       </form>
 </div>
-    <Cards/>
-    <Genre/>
     </>
   );
 }
