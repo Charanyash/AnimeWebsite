@@ -12,12 +12,14 @@ function App() {
         </Route>
         <Route exact path = "/Signup" element = {<Signup/>}>
         </Route>
+        <Route exact path ="/login" element={ < Login /> }></Route>
       </Routes>
 
       </div>
       </Router>
 
     </>
+
   );
 }
 
