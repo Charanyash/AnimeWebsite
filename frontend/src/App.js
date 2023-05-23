@@ -5,6 +5,8 @@ import Home from './Components/Home';
 import Signup from './Components/Signup';
 import Login from './Components/Login';
 import TopAnime from './Components/TopAnime'
+import Signup from './Components/Signup';
+
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route exact path = "/home"  element={ < Home />} />
         <Route exact path="/login" element={ < Login />} />
         <Route exact path = "/topanime" element = {<TopAnime/>}/>
+        <Route exact path = "/signup" element = {<Signup/>}/>
+
       </Routes>
       </Router>
   );
