@@ -1,26 +1,20 @@
 import React from 'react';
 import { BrowserRouter as Router,Route,Routes} from 'react-router-dom';
 import NavBar from './Components/NavBar';
-import Login from './Components/login'
+import Home from './Components/Home';
+import Login from './Components/Login';
+import TopAnime from './Components/TopAnime'
 import Signup from './Components/Signup';
 function App() {
   return (
-    <>
     <Router>
-      <div>
-      <Routes>
-        <Route exact path = "/" element = {<NavBar/>} >
-        </Route>
-        <Route exact path = "/Signup" element = {<Signup/>}>
-        </Route>
-        <Route exact path ="/login" element={ < Login /> }></Route>
-      </Routes>
-
-      </div>
+    <Routes>
+      <Route exact path = "/"  element={ <Home/>}/>
+      <Route exact path="/Login" element={ < Login />} />
+      <Route exact path = "/Signup" element = {<Signup/>}/>
+      <Route exact path = "/topanime" element = {<TopAnime/>}/>
+    </Routes>
       </Router>
-
-    </>
-
   );
 }
 

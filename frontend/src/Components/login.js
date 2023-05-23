@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { LoginSocialFacebook } from 'reactjs-social-login';
 import { FacebookLoginButton } from 'react-social-login-buttons';
 import jwt_decode from 'jwt-decode'
-import './login.css'
+import './Login.css'
 
 export default function Login() {
 
@@ -107,5 +107,3 @@ const ChangePassword = (event)=>{
 </>
   )
 }
-
-
