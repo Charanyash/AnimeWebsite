@@ -15,6 +15,7 @@ function Signup() {
       
     if (Password === confirmPassword){
       setPasswordMatchError(false)
+      
       console.log("Successfully submitted the form")
     }
     else {
