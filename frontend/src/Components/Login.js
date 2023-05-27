@@ -1,56 +1,11 @@
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom'
 import { useEffect } from 'react';
-import jwt_decode from 'jwt-decode';
 
 export default function Login() {
 
 
   const navigate =   useNavigate();
-
-  //Google Login Function
-  const google = window.google;
-  const handleCallbackResponse = async (response)=>{
-    //  console.log("Encoded JWT ID Token" + response.credential)
-     var userObject = jwt_decode(response.credential)
-     console.log(userObject.email)
-
-     const gmail = userObject.email
-
-     setMode("google")
-     const res = await fetch("https://localhost:5000/login",{
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        gmail,mode
-      })
-    });
-    const data = await res.json();
-
-    if(res.status===400 || !data){
-      window.alert(res.error)
-    }
-    else{
-      navigate("/home")
-    }
-
-  }
-
-  useEffect(() =>{
-    /* Global Google*/
-    google.accounts.id.initialize({
-      client_id: "631520071880-28m5pb91jkssbnrcg9j2busgi9bq3qc6.apps.googleusercontent.com",
-      callback: handleCallbackResponse
-    });
-
-    google.accounts.id.renderButton(
-      document.getElementById("google"),
-      {theme: "outline" ,size: "larger"}
-    );
-  },[]);
-
 
   const ChangeUserName = (event)=>{
     setUsername(event.target.value) 
@@ -62,7 +17,6 @@ export default function Login() {
 
   const [username,setUsername] = useState('');
   const [password,setPassword] = useState('');
-  const [mode,setMode] = useState("normal")
 
   const LoginPostData = async (e)=>{
     e.preventDefault()
@@ -74,13 +28,13 @@ export default function Login() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        username,password,mode
+        username,password
       })
     });
     const data = await res.json();
 
     if(res.status===400 || !data){
-      window.alert(res.error)
+      window.alert("Incorrect Credentials")
     }
     else{
       navigate("/home")

@@ -16,9 +16,7 @@ router.post('/login',async (req,res)=>{
 
     try{
         
-        const {username, password, email, mode} = req.body;
-
-        if(mode==="normal"){
+        const {username, password} = req.body;
             
 
             if(!username || !password){
@@ -34,23 +32,7 @@ router.post('/login',async (req,res)=>{
             }else{
                 res.json({message: "Signin Successful"})
             }
-        }
-
-        else if(mode==="google"){
-
-            const {email} = req.body;
-
-            const UserLogin = await User.findOne({email: email})
-
-            
-            console.log("in auth.js",UserLogin)
-            if(!UserLogin){
-                res.status(400).json({error: "Invalid Credentials"})
-            }else{
-                res.json({message: "Signin Successful"})
-            }
-
-        }
+        
 
     }catch(err){
         console.log(err)
