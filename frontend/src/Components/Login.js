@@ -71,14 +71,7 @@ export default function Login() {
                       className="btn btn-success btn-block btn-lg gradient-custom-4 text-body" onClick={LoginPostData}>Login</button>
                   </div>
                  
-                  <hr />
-                  <h6 className="text-center mb-2">Other Login Options</h6>
-
-
-                  <div className="form-outline">
-                    <div id="google" className='align-items-center'></div>
-                  </div>
-                  
+                                        
                   <p className="text-center text-muted mt-4 mb-0">Don't have an account? <a 
                       className="fw-bold text-body" href="/SignUp"><u>SignUp here</u></a></p>
   
