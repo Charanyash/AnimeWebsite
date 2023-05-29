@@ -45,5 +45,3 @@ function TopAnime(){
 }
 
 export default TopAnime;
-
-export default TopAnime;

@@ -1,5 +1,5 @@
 import React from 'react'
-import "./genrebutton.css"
+// import "./genrebutton.css"
 
 const Genrebutton = (props) => {
   return (
