@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 
-require('../db/conn')
+// require('../db/conn')
 const User = require('../model/LoginUserSchema')
 
 router.post('/', (req, res) => {
