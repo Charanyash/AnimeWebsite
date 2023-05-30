@@ -6,31 +6,75 @@ import "./Signup.css"
 
 function Signup() {
 
-  const [Password,setPassword] = useState("");
-  const [confirmPassword,setconfirmPassword] = useState("");
-  const [PasswordMatchError,setPasswordMatchError] = useState(false);
+  const [formData, setFormData] = useState({
+    username: '',
+    email: '',
+    password: '',
+    confirmPassword: ''
+  });
 
+  const [FormError,SetFormError] = useState(
+    {
+      PasswordError : false,
+      RequiredFieldError : false,
+      ValidEmailError :false
+}
+  );
 
   function HandleOnSubmit(event){
-      
-    if (Password === confirmPassword){
-      setPasswordMatchError(false)
-      console.log("Successfully submitted the form")
+    event.preventDefault(); 
+
+    if (!formData.password || !formData.confirmPassword || !formData.username || !formData.email){
+        SetFormError((FormError) => ({...FormError,RequiredFieldError : true}));
+      return;
     }
-    else {
-      event.preventDefault();
-      setPasswordMatchError(true);
+    else SetFormError((FormError) => ({...FormError,RequiredFieldError:false}));
+
+    const email_regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    
+    if (!email_regex.test(formData.email)){
+      SetFormError((FormError) => ({...FormError,ValidEmailError : true}));
+      return;
+    }
+    else  {
+      SetFormError((FormError) => ({...FormError,ValidEmailError : false}));
+    }
+
+    if (formData.password !== formData.confirmPassword){
+      SetFormError((FormError) => ({...FormError,PasswordError: true}));
 
     }
+      
+    else {
+      SetFormError((FormError) => ({...FormError,PasswordError:false}));
+      
+      console.log("Inside equality");
+      console.log(JSON.stringify(formData));
+
+      fetch("http://localhost:5000/user/create",{
+         method : 'POST',
+         headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Handle the response from the backend
+        console.log(data);
+      })
+      .catch(error => {
+        // Handle errors
+        console.error('Error:', error);
+      });
+
+    }
+   
   
   }
-  function HandleConfirmPasswordChange(event){
-    setconfirmPassword(event.target.value);
- 
-  }
-  function HandlePasswordChange(event){
-    setPassword(event.target.value);
- 
+  function HandleInputChange(event){
+      setFormData((formData) => ({...formData,[event.target.name] : event.target.value}));
   }
 
   return (
@@ -52,25 +96,26 @@ function Signup() {
   
                   <div className="form-outline mb-4">
                     <label className="form-label" htmlFor="Username">Username</label>
-                    <input type="text" id="Username" style = {{fontsize : "12px"}}className="form-control form-control-lg" name = "username" required/>
+                    <input type="text" id="Username" style = {{fontsize : "12px"}}className="form-control form-control-lg" value = {formData.username} name = "username" onChange = {HandleInputChange} required/>
                     
                   </div>
   
                   <div className="form-outline mb-4">
                   <label className="form-label" htmlFor="Email">Email</label>
-                    <input type="email" id="Email" className="form-control form-control-lg"name = "email" required/>
+                    <input type="email" id="Email" className="form-control form-control-lg"name = "email" value = {formData.email} onChange={HandleInputChange}
+                    required/>
                     
                   </div>
   
                   <div className="form-outline mb-4">
                   <label className="form-label" htmlFor="Password">Password</label>
-                    <input type="password" id="Password" value = {Password} onChange = {HandlePasswordChange} className="form-control form-control-lg" name = "password" required/>
+                    <input type="password" id="Password" value = {formData.password} onChange = {HandleInputChange} className="form-control form-control-lg" name = "password" required/>
                     
                   </div>
   
                   <div className="form-outline mb-4">
                   <label className="form-label" htmlFor="ConfirmPassword">Confirm Password</label>
-                    <input type="password" id="ConfirmPassword" value = {confirmPassword} onChange = {HandleConfirmPasswordChange} className="form-control form-control-lg" name = "confirmpassword" required/>
+                    <input type="password" id="ConfirmPassword" value = {formData.confirmPassword} onChange = {HandleInputChange} className="form-control form-control-lg" name = "confirmPassword" required/>
                    
                   </div>
   
@@ -79,9 +124,11 @@ function Signup() {
                     <button type= "submit"
                       className="btn btn-success btn-block btn-lg gradient-custom-4 text-body" onClick={HandleOnSubmit}>Register</button>
                   </div>
-                 { PasswordMatchError && <p className="text-center mt-2 mb-0" style = {{color : "red"}}> Passwords did not match. Try again </p>}
+                  {FormError.ValidEmailError ? (<p className="text-center mt-2 mb-0" style = {{color : "red"}}> Please enter the valid email address </p>) : null}
+                  {FormError.RequiredFieldError && <p className="text-center mt-2 mb-0" style = {{color : "red"}}> Please fill all the fields to register. </p>}
+                 {FormError.PasswordError && <p className="text-center mt-2 mb-0" style = {{color : "red"}}> Passwords did not match. Try again </p>}
   
-                  <p className="text-center text-muted mt-3 mb-0">Have already an account? <a href="#!"
+                  <p className="text-center text-muted mt-3 mb-0">Have already an account? <a href="/login"
                       className="fw-bold text-body"><u>Login here</u></a></p>
   
                 </form>
