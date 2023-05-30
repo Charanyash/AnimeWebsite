@@ -22,18 +22,11 @@ function Signup() {
   );
 
   function HandleOnSubmit(event){
-<<<<<<< HEAD
-      
-    if (Password === confirmPassword){
-      setPasswordMatchError(false)
-      console.log("Successfully submitted the form")
-=======
     event.preventDefault(); 
 
     if (!formData.password || !formData.confirmPassword || !formData.username || !formData.email){
         SetFormError((FormError) => ({...FormError,RequiredFieldError : true}));
       return;
->>>>>>> main
     }
     else SetFormError((FormError) => ({...FormError,RequiredFieldError:false}));
 
