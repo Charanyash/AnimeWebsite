@@ -20,7 +20,7 @@ function Login() {
     e.preventDefault()
 
 
-    const res = await fetch("/login",{
+    const res = await fetch("/user/login",{
       method: "POST",
       headers: {
         "Content-Type": "application/json"
