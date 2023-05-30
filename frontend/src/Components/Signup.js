@@ -22,11 +22,18 @@ function Signup() {
   );
 
   function HandleOnSubmit(event){
+<<<<<<< HEAD
+      
+    if (Password === confirmPassword){
+      setPasswordMatchError(false)
+      console.log("Successfully submitted the form")
+=======
     event.preventDefault(); 
 
     if (!formData.password || !formData.confirmPassword || !formData.username || !formData.email){
         SetFormError((FormError) => ({...FormError,RequiredFieldError : true}));
       return;
+>>>>>>> main
     }
     else SetFormError((FormError) => ({...FormError,RequiredFieldError:false}));
 
@@ -128,7 +135,7 @@ function Signup() {
                   {FormError.RequiredFieldError && <p className="text-center mt-2 mb-0" style = {{color : "red"}}> Please fill all the fields to register. </p>}
                  {FormError.PasswordError && <p className="text-center mt-2 mb-0" style = {{color : "red"}}> Passwords did not match. Try again </p>}
   
-                  <p className="text-center text-muted mt-3 mb-0">Have already an account? <a href="/login"
+                  <p className="text-center text-muted mt-3 mb-0">Have already an account? <a href="#!"
                       className="fw-bold text-body"><u>Login here</u></a></p>
   
                 </form>
