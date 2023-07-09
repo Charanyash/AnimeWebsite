@@ -1,0 +1,5 @@
+.link {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Inherit the text color from the parent */
+    cursor: text; /* Set cursor to text to remove the link cursor */
+    }
