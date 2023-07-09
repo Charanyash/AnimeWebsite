@@ -2,12 +2,23 @@ const User = require('../model/LoginUserSchema')
 
 const createUser = (req,res) =>{
 
-    // Logic for creating user.
-    // console.log(req.body);
-    // res.status(200).send({message : "Connected Sucessfully"});
+    // Logic for creating use
+    
+    try{
+
+    // Collecting the data from front end
     const {username , email,password , confirmPassword} = req.body;
-    console.log("Username :" ,username);
-    res.status(200).send({message : "Hello"});
+
+    const user = new User({username ,email,password});
+
+     user.save();
+     res.status(201).send({message : "Created the user succesfully ",username});
+
+    }
+    catch(error){
+        res.status(500).send({ message: 'Error creating user', error: error.message });
+
+    }
 }
 const loginUser = (async (req,res)=>{
 
