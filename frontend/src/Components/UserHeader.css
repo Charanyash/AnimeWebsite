@@ -1,0 +1,49 @@
+/* UserHeader.css */
+
+.user-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 10px;
+    color: white;
+  }
+  
+  .user-nav {
+    display: flex;
+    align-items: center;
+  }
+  
+  .user-nav-link {
+    margin-left: 10px;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .user-icon {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .dropdown {
+    position: absolute;
+    top: 40px;
+    right: 10px;
+    background-color: #333;
+    padding: 10px;
+    display: none;
+  }
+  
+  .dropdown-item {
+    color: white;
+    text-decoration: none;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .user-icon:hover .dropdown {
+    display: block;
+  }
+  

@@ -1,11 +1,11 @@
 import React from 'react'
 import { useState } from 'react';
 import "./Signup.css"
-
+import {useNavigate} from 'react-router-dom'
 
 
 function Signup() {
-
+ const navigate = useNavigate();
   const [formData, setFormData] = useState({
     username: '',
     email: '',
@@ -59,9 +59,17 @@ function Signup() {
         body: JSON.stringify(formData)
 
       })
-      .then(response => response.json())
+      .then(response => {
+        if (response.status ===201)
+
+        return response.json();
+        else {
+          throw new Error('Error: ' + response.status);
+        }
+      })
       .then(data => {
         // Handle the response from the backend
+        navigate("/home");
         console.log(data);
       })
       .catch(error => {
