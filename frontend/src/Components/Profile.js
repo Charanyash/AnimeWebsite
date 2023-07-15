@@ -53,7 +53,8 @@ const navigate = new useNavigate();
   return (
   
     <div>
-      <form method='GET'>
+      {loading ? (<h3 style = {{textAlign : "center"}}> Page is loading .....</h3>) :
+     ( <form method='GET'>
       <div className="form-outline mb-4">
                     <label className="form-label" htmlFor="Username">Username</label>
                     <input type="text" id="Username" style = {{fontsize : "12px"}}className="form-control form-control-lg" value = {userData.profile} name = "username" />
@@ -66,7 +67,7 @@ const navigate = new useNavigate();
                   </div>
        <div className="form-outline mb-4">
                     <label className="form-label" htmlFor="Gender"> Gender </label>
-                    <input type="text" id="Gender" style = {{fontsize : "12px"}}className="form-control form-control-lg" value = {userData.gender} name = "" />
+                    <input type="text" id="Gender" style = {{fontsize : "12px"}}className="form-control form-control-lg" value = {userData.gender} name = "Gender" />
                     
                   </div>
                  <div className="form-outline mb-4">
@@ -76,6 +77,7 @@ const navigate = new useNavigate();
                   </div>
       
       </form>
+     )}
     </div>
   )
 }
