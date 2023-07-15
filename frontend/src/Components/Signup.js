@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState } from 'react';
 import "./Signup.css"
-import {useNavigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 
 function Signup() {
@@ -48,8 +48,8 @@ function Signup() {
     else {
       SetFormError((FormError) => ({...FormError,PasswordError:false}));
       
-      console.log("Inside equality");
-      console.log(JSON.stringify(formData));
+      // console.log("Inside equality");
+      // console.log(JSON.stringify(formData));
 
       fetch("http://localhost:5000/user/create",{
          method : 'POST',
@@ -59,7 +59,7 @@ function Signup() {
         body: JSON.stringify(formData)
 
       })
-      .then(response => {
+      .then((response) => {
         if (response.status ===201)
 
         return response.json();
@@ -67,7 +67,8 @@ function Signup() {
           throw new Error('Error: ' + response.status);
         }
       })
-      .then(data => {
+      
+      .then((data) => {
         // Handle the response from the backend
         navigate("/home");
         console.log(data);
@@ -136,8 +137,8 @@ function Signup() {
                   {FormError.RequiredFieldError && <p className="text-center mt-2 mb-0" style = {{color : "red"}}> Please fill all the fields to register. </p>}
                  {FormError.PasswordError && <p className="text-center mt-2 mb-0" style = {{color : "red"}}> Passwords did not match. Try again </p>}
   
-                  <p className="text-center text-muted mt-3 mb-0">Have already an account? <a href="#!"
-                      className="fw-bold text-body"><u>Login here</u></a></p>
+                  <p className="text-center text-muted mt-3 mb-0">Have already an account? <Link to="/login"
+                      className="fw-bold text-body"><u>Login here</u></Link></p>
   
                 </form>
   
