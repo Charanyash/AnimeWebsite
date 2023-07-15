@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import {useNavigate} from 'react-router-dom'
+// import {useCookies} from 'react-cookie'
 function Login() {
-
+  
 
   const navigate =   useNavigate();
 
@@ -16,6 +17,8 @@ function Login() {
   const [username,setUsername] = useState('');
   const [password,setPassword] = useState('');
 
+  // const [cookies,setcookie] = useCookies(['jwt']);
+
   const LoginPostData = async (e)=>{
     e.preventDefault()
 
@@ -29,12 +32,17 @@ function Login() {
         username,password
       })
     });
-    const data = await res.json();
-
-    if(res.status===400 || !data){
+    
+    const data = res.json();
+    
+    if(res.status===400 || res.status === 401 || !data){
       window.alert("Incorrect Credentials")
     }
     else{
+      // console.log(data.jwt);
+  
+      // console.log(cookies.jwt)
+      
       navigate("/home")
     }
   }

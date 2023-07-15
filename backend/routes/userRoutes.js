@@ -4,17 +4,15 @@ const router = express.Router() ;
 
 const UserController = require("../controllers/userController") ;
 
+const AuthUser = require("../controllers/authMiddleware");
+
 router.post("/create",UserController.createUser);
 
+router.get("/profile",AuthUser,UserController.getProfileUser);
 
-const jwt = require('jsonwebtoken');
-// router.post('/', (req, res) => {
-//     console.log(req.body.username);
-//     res.json({ message: req.body });
-// });
+router.get("/watchlist",AuthUser,UserController.getWatchList);
 
-
-router.post('/login',UserController.loginUser)
+router.post('/login',UserController.loginUser);
 
 
 
