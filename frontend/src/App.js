@@ -20,6 +20,7 @@ function App() {
         <Route exact path="/login" element={ < Login />} />
         <Route exact path = "/topanime" element = {<TopAnime/>}/>
         <Route exact path = "/signup" element = {<Signup/>}/>
+        <Route exact path='/search' element = {<Search/>}/>
       </Routes>
       </Router>
   );

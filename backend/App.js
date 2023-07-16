@@ -29,7 +29,7 @@ app.use("/api",require("./routes/animeRoutes")) ;
 
 app.use("/user",require("./routes/userRoutes"))
 
-// app.get("/",(req,res)=>{ res.send("Hello World!");})
+app.use("/search",require("./routes/searchRoutes"))
 
 
 app.listen(port,() => {
